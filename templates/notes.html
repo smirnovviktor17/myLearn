@@ -1,0 +1,21 @@
+{% extends 'pages.html' %}
+
+{% block title %}
+Заметки
+{% endblock %}
+
+{% block main %}
+В этом разделе присутствуют корокие инструкции, которые помогут в самостоятельном изучении 1С
+{% endblock %}
+
+{% block mainContent %}
+    {% for note in notes %}
+    <div class="lab-card">
+        <h2 class="lab-title">{{ note.title }}</h2>
+        <p class="lab-date">Дата: {{ note.date.strftime('%d.%m.%Y') }}</p>
+        <div class="lab-test">
+            <p>{{ note.content }}</p>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}

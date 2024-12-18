@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1С myLearnSpace</title>
+  <link rel="stylesheet" href= {{ url_for('static', filename = "css/styles.css") }} >
+</head>
+<body>
+  <!-- Шапка -->
+  <header class="header">
+    <div class="logo">
+      <img src= {{ url_for('static', filename = "img/logo.png") }} alt="Логотип 1С myLearnSpace">
+      <h1>1С myLearnSpace</h1>
+    </div>
+  </header>
+
+  <!-- Основная часть -->
+  <div class="container">
+    <!-- Левое меню -->
+    <nav class="sidebar">
+      <ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="/notes">Заметки</a></li>
+        <li><a href="/marks">Результаты обучения</a></li>
+        <li><a href="/labs">Лабораторные</a></li>
+        <li><a href="/reviews">Отзывы</a></li>
+      </ul>
+    </nav>
+
+    <!-- Рабочее поле -->
+    <main class="content">
+      <h2>Добро пожаловать в 1С myLearnSpace!</h2>
+      <p>Этот сайт создан для удобного доступа к заметкам, гайдам и лабораторным работам по разработке в 1С.</p>
+
+      <div class="news-container">
+        {% for item in news %}
+        <div class="news-card">
+          <h2>{{ item.title }}</h2>
+          <p class="news-date"><strong>Дата:</strong> {{ item.date.strftime('%d.%m.%Y') }}</p>
+
+          {% if item.image_path %}
+          <img src="{{ url_for('static', filename=item.image_path.split('static/')[-1]) }}"
+               alt="{{ item.title }}"
+               class="news-image">
+          {% endif %}
+
+          <p>{{ item.content }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </main>
+  </div>
+
+  <!-- Подвал -->
+  <footer class="footer">
+    <p>&copy; 2024 1С myLearnSpace.</p>
+  </footer>
+</body>
+</html>

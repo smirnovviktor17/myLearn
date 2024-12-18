@@ -1,0 +1,27 @@
+{% extends 'admin_console.html' %}
+
+{% block title %}
+Добавление поста
+{% endblock %}
+
+{% block mainTitle %}
+Добавление поста
+{% endblock %}
+
+{% block mainContent %}
+        <form method="POST">
+            <div class="form-group">
+                <label for="lab-title">Название поста:</label>
+                <input type="text" id="lab-title" name="lab-title" required>
+            </div>
+            <div class="form-group">
+                <label for="post-date">Дата:</label>
+                <input type="date" id="lab-date" name="lab-date" required>
+            </div>
+            <div class="form-group">
+                <label for="post-content">Текст поста:</label>
+                <textarea id="lab-content" name="lab-content" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="submit-button">Создать пост</button>
+        </form>
+{% endblock %}

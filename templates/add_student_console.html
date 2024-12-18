@@ -1,0 +1,60 @@
+{% extends 'admin_console.html' %}
+
+{% block title %}
+Добавление студентов
+{% endblock %}
+
+{% block mainTitle %}
+Добавление студентов
+{% endblock %}
+
+{% block mainContent %}
+<form action="/add_student_console" method="POST">
+    <div class="form-group">
+        <label for="group-id">Выберите группу:</label>
+        <select id="group-id" name="group-id" required>
+            {% for group in groups %}
+                <option value="{{ group.id }}">{{ group.title }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="student-table">Студенты:</label>
+        <table id="student-table">
+            <thead>
+                <tr>
+                    <th>ФИО</th>
+                    <th>Удалить</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" name="student-names[]" placeholder="ФИО студента" required></td>
+                    <td><button type="button" class="delete-row">Удалить</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" id="add-row">Добавить строку</button>
+    </div>
+    <button type="submit" class="submit-button">Добавить студентов</button>
+</form>
+
+<script>
+    // Добавление новой строки
+    document.getElementById('add-row').addEventListener('click', function () {
+        const table = document.getElementById('student-table').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow();
+        newRow.innerHTML = `
+            <td><input type="text" name="student-names[]" placeholder="ФИО студента" required></td>
+            <td><button type="button" class="delete-row">Удалить</button></td>
+        `;
+    });
+
+    // Удаление строки
+    document.getElementById('student-table').addEventListener('click', function (e) {
+        if (e.target && e.target.classList.contains('delete-row')) {
+            e.target.closest('tr').remove();
+        }
+    });
+</script>
+{% endblock %}

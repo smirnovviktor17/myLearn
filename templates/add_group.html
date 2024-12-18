@@ -1,0 +1,43 @@
+{% extends 'admin_console.html' %}
+
+{% block title %}
+Добавление групп
+{% endblock %}
+
+{% block mainTitle %}
+Добавление групп
+{% endblock %}
+
+{% block mainContent %}
+    <form action="/add_group" method="POST">
+        <div class="form-group">
+            <label for="group-title">Название группы:</label>
+            <input type="text" id="group-title" name="group-title" placeholder="Введите название группы" required>
+        </div>
+        <div class="form-group">
+            <label for="group-description">Описание группы:</label>
+            <textarea id="group-description" name="group-description" placeholder="Введите описание (опционально)"></textarea>
+        </div>
+        <button type="submit" class="submit-button">Добавить группу</button>
+    </form>
+
+    <hr>
+
+    <h2>Существующие группы</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Описание</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for group in groups %}
+            <tr>
+                <td>{{ group.title }}</td>
+                <td>{{ group.description }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

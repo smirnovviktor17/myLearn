@@ -1,0 +1,32 @@
+{% extends 'pages.html' %}
+
+{% block title %}Результаты обучения{% endblock %}
+
+{% block mainTitle %}Результаты обучения{% endblock %}
+
+{% block mainContent %}
+    {% for group, students in groups.items() %}
+        <h2>Группа: {{ group }}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ФИО</th>
+                    <th>Название лабораторной</th>
+                    <th>Оценка</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                    {% for lab, grade in student.labs %}
+                    <tr>
+                        <td>{{ student.name }}</td>
+                        <td>{{ lab }}</td>
+                        <td>{{ grade }}</td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+    {% endfor %}
+{% endblock %}

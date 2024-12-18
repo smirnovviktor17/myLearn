@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet"   href = {{ url_for('static', filename = "css/pages_styles.css") }} >
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="logo">
+            <img src= {{ url_for('static', filename = "img/logo.png") }} alt="1С myLearnSpace">
+            <span>1С myLearnSpace</span>
+        </div>
+    </header>
+
+    <!-- Меню -->
+    <nav id="sidebar">
+    <div class="sidebar-header">
+
+    </div>
+    <ul>
+        <li>
+            <a href="/">
+                <img src="{{ url_for('static', filename='img/burger.png') }}" alt="Menu" class="menu-icon">
+            </a>
+        </li>
+        <li>
+            <a href="/">
+                <img src="{{ url_for('static', filename='img/icons1.png') }}" alt="Главная" class="menu-icon">
+                <span class="menu-text">Главная</span>
+            </a>
+        </li>
+        <li>
+            <a href="/marks">
+                <img src="{{ url_for('static', filename='img/icons3.png') }}" alt="Результаты обучения" class="menu-icon">
+                <span class="menu-text">Результаты обучения</span>
+            </a>
+        </li>
+        <li>
+            <a href="/labs">
+                <img src="{{ url_for('static', filename='img/icons2.png') }}" alt="Лабораторные" class="menu-icon">
+                <span class="menu-text">Лабораторные</span>
+            </a>
+        </li>
+        <li>
+            <a href="/notes">
+                <img src="{{ url_for('static', filename='img/icons4.png') }}" alt="Заметки" class="menu-icon">
+                <span class="menu-text">Заметки</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+    <!-- Контент страницы -->
+    <main>
+        <h1>{% block mainTitle %} {% endblock %}</h1>
+        <br>
+        <p>{% block main %} {% endblock %}</p>
+        <br>
+        {% block mainContent %} {% endblock %}
+        <!-- Контент страницы -->
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <p>&copy; 2024 1С myLearnSpace.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

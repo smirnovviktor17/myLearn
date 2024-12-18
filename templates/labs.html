@@ -1,0 +1,25 @@
+{% extends 'pages.html' %}
+
+{% block title %}
+Лабораторные работы
+{% endblock %}
+
+{% block main %}
+Здесь размещены рабораторные работы для самостоятельного изучения
+{% endblock %}
+
+{% block mainTitle %}
+Лабораторные работы
+{% endblock %}
+
+{% block mainContent %}
+        {% for post in posts %}
+        <div class="lab-card">
+            <h2 class="lab-title">{{ post.title }}</h2>
+            <p class="lab-date">Дата: {{ post.date }}</p>
+            <div class="lab-test">
+                <p> {{ post.text }}</p>
+            </div>
+        </div>
+        {% endfor %}
+{% endblock %}

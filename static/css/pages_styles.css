@@ -1,0 +1,235 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header {
+    background-color: #f6c900; /* Желтый цвет */
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Устанавливаем шапку поверх всех элементов */
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+header .logo span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav .sidebar-header .menu-icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+/* Основной стиль для меню */
+nav {
+    width: 50px; /* Свернутое меню */
+    position: fixed;
+    top: 80px;
+    left: 0;
+    height: calc(100% - 80px);
+    background-color: #f8e19b;
+    transition: width 0.3s;
+    overflow: hidden;
+    z-index: 999;
+}
+
+nav:hover {
+    width: 250px; /* Развернутое меню */
+}
+
+/* Стили для пунктов меню */
+nav ul {
+    list-style-type: none;
+    padding: 20px 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    white-space: nowrap; /* Предотвращает перенос текста */
+    transition: background-color 0.2s;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #142300;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Расстояние между иконкой и текстом */
+}
+
+nav ul li:hover {
+    background-color: #444;
+}
+
+/* Стили для иконок */
+nav ul li .menu-icon {
+    width: 30px;
+    height: 30px;
+}
+
+/* Текст меню (скрытие в свернутом состоянии) */
+nav ul li .menu-text {
+    display: none; /* Скрываем текст */
+    font-family: 'Georgia', serif; /* Шрифт для текста */
+    font-size: 16px;
+}
+
+/* Показываем текст в развернутом меню */
+nav:hover ul li .menu-text {
+    display: inline; /* Показываем текст */
+}
+
+
+main {
+    margin-left: 50px; /* Отступ для контента, чтобы не перекрывалось меню */
+    padding: 20px;
+    margin-top: 80px; /* Отступ от шапки */
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Контейнер для лабораторных */
+.lab-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Заголовок страницы */
+.lab-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #555;
+}
+
+/* Карточка лабораторной работы */
+.lab-card {
+    border: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 6px;
+    background-color: #fcfcfc;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.lab-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Наименование лабораторной */
+.lab-title {
+    font-size: 18px;
+    color: #444;
+    margin: 0 0 10px;
+}
+
+/* Дата лабораторной */
+.lab-date {
+    font-size: 14px;
+    color: #888;
+    margin: 0 0 10px;
+}
+
+/* Текст лабораторной */
+.lab-test p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Оформление таблиц */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+table thead {
+    background-color: #f2f2f2;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+table th {
+    font-weight: bold;
+    background-color: #e0e0e0;
+    color: #333;
+    text-transform: uppercase;
+}
+
+table tr:nth-child(even) {
+    background-color: #f7f7f7;
+}
+
+table tr:hover {
+    background-color: #eaeaea;
+}
+
+h2 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 20px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    table {
+        font-size: 14px;
+    }
+
+    table th, table td {
+        padding: 6px;
+    }
+}

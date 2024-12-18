@@ -1,0 +1,104 @@
+{% extends 'admin_console.html' %}
+
+{% block title %}
+Добавление оценок
+{% endblock %}
+
+{% block mainTitle %}
+Добавление оценок
+{% endblock %}
+
+{% block mainContent %}
+<form action="/marks_console" method="POST">
+        <!-- Выбор студента -->
+        <div class="form-group">
+            <label for="student-id">ФИО студента:</label>
+            <select id="student-id" name="student_id" onchange="updateGroup()" required>
+                <option value="" disabled selected>Выберите студента</option>
+                {% for student in students %}
+                <option value="{{ student.id }}" data-group="{{ student.group.title }}">
+                    {{ student.full_name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Отображение группы -->
+        <div class="form-group">
+            <label for="group-title">Группа:</label>
+            <input type="text" id="group-title" name="group-title" readonly required>
+        </div>
+
+        <!-- Таблица лабораторных и оценок -->
+        <div class="form-group">
+            <label for="marks-table">Оценки:</label>
+            <table id="marks-table">
+                <thead>
+                    <tr>
+                        <th>Название лабораторной</th>
+                        <th>Оценка</th>
+                        <th>Удалить</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <select name="labs[]" required>
+                                <option value="" disabled selected>Выберите лабораторную</option>
+                                {% for lab in labs %}
+                                <option value="{{ lab.id }}">{{ lab.title }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" name="grades[]" min="1" max="5" placeholder="Оценка" required>
+                        </td>
+                        <td>
+                            <button type="button" class="delete-row">Удалить</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" id="add-row">Добавить строку</button>
+        </div>
+
+        <button type="submit">Сохранить</button>
+    </form>
+
+    <script>
+        // Обновление группы при выборе студента
+        function updateGroup() {
+            const studentSelect = document.getElementById('student-id');
+            const groupInput = document.getElementById('group-title');
+            const selectedOption = studentSelect.options[studentSelect.selectedIndex];
+            groupInput.value = selectedOption.getAttribute('data-group') || '';
+        }
+
+        // Добавление новой строки
+        document.getElementById('add-row').addEventListener('click', function () {
+            const table = document.getElementById('marks-table').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+            newRow.innerHTML = `
+                <td>
+                    <select name="labs[]" required>
+                        <option value="" disabled selected>Выберите лабораторную</option>
+                        {% for lab in labs %}
+                        <option value="{{ lab.id }}">{{ lab.title }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td><input type="number" name="grades[]" min="1" max="5" placeholder="Оценка" required></td>
+                <td><button type="button" class="delete-row">Удалить</button></td>
+            `;
+        });
+
+        // Удаление строки
+        document.getElementById('marks-table').addEventListener('click', function (e) {
+            if (e.target && e.target.classList.contains('delete-row')) {
+                e.target.closest('tr').remove();
+            }
+        });
+    </script>
+{% endblock %}
+
+

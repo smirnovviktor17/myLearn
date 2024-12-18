@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1С myLearnSpace</title>
+  <link rel="stylesheet" href= {{ url_for('static', filename = "css/styles.css") }} >
+</head>
+<body>
+  <!-- Шапка -->
+  <header class="header">
+    <div class="logo">
+      <img src= {{ url_for('static', filename = "img/logo.png") }} alt="Логотип 1С myLearnSpace">
+      <h1>1С myLearnSpace</h1>
+    </div>
+  </header>
+
+  <!-- Основная часть -->
+  <div class="container">
+    <!-- Левое меню -->
+    <nav class="sidebar">
+      <ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="/notes">Заметки</a></li>
+        <li><a href="/marks">Результаты обучения</a></li>
+        <li><a href="/labs">Лабораторные</a></li>
+        <li><a href="/reviews">Отзывы</a></li>
+      </ul>
+    </nav>
+
+    <!-- Рабочее поле -->
+    <div class="reviews-wrapper">
+      <!-- Список всех отзывов -->
+          <div class="reviews-container">
+            {% for review in all_reviews %}
+            <div class="review-card">
+              <h3 class="review-name">{{ review.name }}</h3>
+              <p class="review-date">Дата: {{ review.date.strftime('%d.%m.%Y') }}</p>
+              <p class="review-content">{{ review.content }}</p>
+            </div>
+            {% endfor %}
+          </div>
+
+      <!-- Форма для добавления нового отзыва -->
+      <div class="review-form-container">
+        <h2>Оставить отзыв</h2>
+        <form method="POST">
+            <div class="form-group">
+                <label for="name">Имя:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="content">Текст отзыва:</label>
+                <textarea id="content" name="content" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="submit-button">Отправить отзыв</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Подвал -->
+  <footer class="footer">
+    <p>&copy; 2024 1С myLearnSpace.</p>
+  </footer>
+</body>
+</html>
+
+
+
+
